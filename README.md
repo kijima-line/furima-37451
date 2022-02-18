@@ -34,17 +34,17 @@ Things you may want to cover:
 | encrypted_password | string | null: false              |
 | last_name          | string | null: false              |
 | fist_name          | string | null: false              |
-| fist_name_a        | string | null: false              |
-| last_name_b        | string | null: false              |
-| information        | text   | null: false              |
+| fist_name_kana     | string | null: false              |
+| last_name_kana     | string | null: false              |
+| birth_day          | date   | null: false              |
 
 
 
 
 ### Association
-- has_many :items dependent: :destroy
+- has_many :items
 - belongs_to :settlement dependent: :destroy
-- belongs_to :card dependent: :destroy
+
 
 
 ## settlement テーブル
@@ -55,18 +55,27 @@ Things you may want to cover:
 | fist_name          | string  | null: false                    |
 | fist_name_a        | string  | null: false                    |
 | last_name_b        | string  | null: false                    |
-| prefecture         | string  | null: false                    |
-| city               | string  | null: false                    |
-| address            | string  | null: false                    |
-| bill_name          | string  | null: false                    |
 | phon_number        | string  | null: false                    |
 | user_id            | integer | null: false, foreign_key: true |
 
+### Association
+- belongs_to :user
+- has_one :address
 
 
+## addressテーブル
+| Column             | Type    | Options                        |
+| ------------------ | ------- | ------------------------------ |
+| prefecture         | string  | null: false                    |
+| city               | string  | null: false                    |
+| address_number     | string  | null: false                    |
+| bill_name          | string  | null: false                    |
 
+### Association
 
-##  itemテーブル
+- belongs_to :settlement
+
+##  itemsテーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
@@ -75,42 +84,13 @@ Things you may want to cover:
 | sale           | string     | null: false                    |
 | status         | string     | null: false                    |
 | buy_cost       | string     | null: false                    |
+| buy_day        | string     | null: false                    |
 | prefecture_id  | string     | null: false                    |
-| buy_id         | integer    | null: false,foreign_key: true  |
 | category_id    | integer    | null: false,foreign_key: true  |
-| brand_id       | integer    | null: false,foreign_key: true  |
 | user_id        | integer    | null: false,foreign_key: true  |
 
 
-
 ### Association
-- belongs_to :user dependent: :destroy
-- belongs_to :category dependent: :destroy   
-- belongs_to :brand dependent: :destroy
-
-- has_many   :images dependent: :destroy
-
-- belongs_to_active_hash :prefecture
+- belongs_to :user 
 
 
-##  brandテーブル
-
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| name           | string     | index: true                    |
-
-
-### Association
-
-- belongs_to :items
-
-##  categoryテーブル
-
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| name           | string     | null: false                    |
-
-
-### Association
-
-- belongs_to :items
