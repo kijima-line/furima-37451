@@ -27,17 +27,17 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| last_name          | string | null: false |
-| fist_name          | string | null: false |
-| fist_name_a        | string | null: false |
-| last_name_b        | string | null: false |
-| information        | text   | null: false |
-| birthday           | date   | null: false |
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| nickname           | string | null: false              |
+| email              | string | null: false,unique: true |
+| encrypted_password | string | null: false              |
+| last_name          | string | null: false              |
+| fist_name          | string | null: false              |
+| fist_name_a        | string | null: false              |
+| last_name_b        | string | null: false              |
+| information        | text   | null: false              |
+
 
 
 
@@ -64,10 +64,6 @@ Things you may want to cover:
 
 
 
-### Association
-
-- belongs_to :user
-
 
 
 ##  itemテーブル
@@ -78,7 +74,6 @@ Things you may want to cover:
 | description    | string     | null: false                    |
 | sale           | string     | null: false                    |
 | status         | string     | null: false                    |
-| buy_days       | string     | null: false                    |
 | buy_cost       | string     | null: false                    |
 | prefecture_id  | string     | null: false                    |
 | buy_id         | integer    | null: false,foreign_key: true  |
@@ -97,16 +92,6 @@ Things you may want to cover:
 
 - belongs_to_active_hash :prefecture
 
-##  imageテーブル
-
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| prefecture_id  | string     | null: false                    |
-| item_id        | integer    | null: false,foreign_key: true  |
-
-### Association
-
-- belongs_to :item
 
 ##  brandテーブル
 
@@ -119,14 +104,13 @@ Things you may want to cover:
 
 - belongs_to :items
 
-##  cardテーブル
+##  categoryテーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| user_id        | integer    | null: false,foreign_key: true  |
-| card_id        | string     | null: false                    |
+| name           | string     | null: false                    |
 
 
 ### Association
 
-- belongs_to :user
+- belongs_to :items
