@@ -43,33 +43,36 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many :buyer
+- has_many :buyers
 
 
 
 ## buyers テーブル
 
-| Column             | Type    | Options                        |
-| ------------------ | --------| -------------------------------|
-| item_id            | integer | null: false, foreign_key: true |
-| user_id            | integer | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | -------------------------------|
+| item            | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+- belongs_to :item
 - has_one :region
-- has_may :items
+
 
 
 
 ## regionsテーブル
-| Column             | Type    | Options                        |
-| ------------------ | ------- | ------------------------------ |
-| post_code          | string  | null: false                    |
-| prefecture_id      | integer | null: false                    |
-| city               | string  | null: false                    |
-| address_number     | string  | null: false                    |
-| building_name      | string  |                                |
-| phon_number        | string  | null: false                    |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| post_code          | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| city               | string     | null: false                    |
+| address_number     | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| buyer              | references | null: false, foreign_key: true |
+
 
 ### Association
 
@@ -92,5 +95,5 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user 
-- belongs_to :buyer
+- has_one :buyer
 
