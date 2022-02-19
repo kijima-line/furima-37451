@@ -1,58 +1,56 @@
 require 'rails_helper'
-describe User do
-  describe '#create' do
-  
 
-    it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できること" do
-      user = build(:user)
-      expect(user).to be_valid
+RSpec.describe User, type: :model do
+  before do
+    @user = FactoryBot.build(:user)
+  end
+  describe "ユーザー新規登録" do
+    it "nicknameが空だと登録できない" do
+      @user.nickname = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
 
-    it "emailがない場合は登録できないこと" do
-      user = build(:user, email: "")
-      user.valid?
-      expect(user.errors[:email]).to include("can't be blank")
+    it "emailが空では登録できない" do
+      @user.email = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email can't be blank")
     end
-
-    it "passwordがない場合は登録できないこと" do
-      user = build(:user, password: "")
-      user.valid?
-      expect(user.errors[:password]).to include("can't be blank")
+    it "passwordが空では登録できない" do
+      @user.password = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password can't be blank")
     end
-
-
-    it "passwordが存在してもpassword_confirmationがない場合は登録できないこと" do
-      user = build(:user, password_confirmation: "")
-      user.valid?
-      expect(user.errors[:password_confirmation]).to include("doesn't match Password")
+    it "password_confirmationが空では登録できない" do
+      @user.password_confirmation = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
-
-
-
-    it "passwordが6文字以上であれば登録できること" do
-      user = build(:user, password: "123456", password_confirmation: "123456")
-      expect(user).to be_valid
-    end
-
-    it "fist_nameが空では登録できない" do
-      user = build(:user, fist_name: "")
-      expect(user).to be_valid
+    it "first_nameが空では登録できない" do
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
     end
     it "last_nameが空では登録できない" do
-      user = build(:user, last_name: "")
-      expect(user).to be_valid
+      @user.last_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters.")
     end
-    it "fist_name_kanaが空では登録できない" do
-      user = build(:user, fist_name_kana: "")
-      expect(user).to be_valid
+    it "first_name_kanaが空では登録できない" do
+      @user.first_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
     end
     it "last_name_kanaが空では登録できない" do
-      user = build(:user, last_name_kana: "")
-      expect(user).to be_valid
+      @user.last_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters.")
     end
     it "birth_dayが空では登録できない" do
-      user = build(:user, birth_day: "")
-      expect(user).to be_valid
+      @user.birth_day = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birth day can't be blank")
     end
+
   end
 end
