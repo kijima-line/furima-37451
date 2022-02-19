@@ -1,35 +1,58 @@
 require 'rails_helper'
-RSpec.describe User, type: :model do
-  describe "ユーザー新規登録" do
-    it "nicknameが空だと登録できない" do
-      user = User.new(nickname: "", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000")
-      user.valid?
-      expect(user.errors.full_messages).to include("Nickname can't be blank")
+describe User do
+  describe '#create' do
+  
+
+    it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できること" do
+      user = build(:user)
+      expect(user).to be_valid
     end
-    it "emailが空では登録できない" do
-      user = User.new(nickname: "abe", email: "", password: "00000000", password_confirmation: "00000000")
+
+    it "emailがない場合は登録できないこと" do
+      user = build(:user, email: "")
       user.valid?
-      expect(user.errors.full_messages).to include("Email can't be blank")
+      expect(user.errors[:email]).to include("can't be blank")
     end
+
+    it "passwordがない場合は登録できないこと" do
+      user = build(:user, password: "")
+      user.valid?
+      expect(user.errors[:password]).to include("can't be blank")
+    end
+
+
+    it "passwordが存在してもpassword_confirmationがない場合は登録できないこと" do
+      user = build(:user, password_confirmation: "")
+      user.valid?
+      expect(user.errors[:password_confirmation]).to include("doesn't match Password")
+    end
+
+
+
+    it "passwordが6文字以上であれば登録できること" do
+      user = build(:user, password: "123456", password_confirmation: "123456")
+      expect(user).to be_valid
+    end
+
     it "fist_nameが空では登録できない" do
-      user = User.new(nickname: "abe", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000", fist_name:"")
-      user.valid?
+      user = build(:user, fist_name: "")
+      expect(user).to be_valid
     end
     it "last_nameが空では登録できない" do
-      user = User.new(nickname: "abe", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000", fist_name:"あ", last_name:"")
-      user.valid?
+      user = build(:user, last_name: "")
+      expect(user).to be_valid
     end
     it "fist_name_kanaが空では登録できない" do
-      user = User.new(nickname: "abe", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000", fist_name:"あ", last_name:"あ", fist_name_kana:"")
-      user.valid?
+      user = build(:user, fist_name_kana: "")
+      expect(user).to be_valid
     end
     it "last_name_kanaが空では登録できない" do
-      user = User.new(nickname: "abe", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000", fist_name:"あ", last_name:"あ", fist_name_kana:"ア", last_name_kana:"")
-      user.valid?
+      user = build(:user, last_name_kana: "")
+      expect(user).to be_valid
     end
     it "birth_dayが空では登録できない" do
-      user = User.new(nickname: "abe", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000", fist_name:"あ", last_name:"あ", fist_name_kana:"ア", last_name_kana:"ア", birth_day:"")
-      user.valid?
+      user = build(:user, birth_day: "")
+      expect(user).to be_valid
     end
   end
 end
