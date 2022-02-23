@@ -36,30 +36,11 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-<<<<<<< Updated upstream
-    redirect_to root_path(@item)
-    else
-    render :index
-    end
-  end
-
-  def update
-    if @item.update(item_params)
-      redirect_to item_path
-    else
-      render :edit
-    end
-  end
-
-
-=======
       redirect_to root_path(@item)
       else
       render :index
       end
   end
-
->>>>>>> Stashed changes
   private
   def set_action
     redirect_to root_path unless current_user.id == @item.user_id 
