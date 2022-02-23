@@ -5,7 +5,6 @@ RSpec.describe Item, type: :model do
   end
   describe '出品機能' do
     context '保存できる場合' do
-      binding.pry
       it '全ての項目が入力されていれば出品できる' do
         expect(@item).to be_valid
       end
