@@ -34,26 +34,26 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
+
   def destroy
     if @item.destroy
-    redirect_to root_path(@item)
+      redirect_to root_path(@item)
     else
-    render :index
+      render :index
     end
-   end
+  end
 
   def edit
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id
-
   end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path
-      else
-  
+    else
+
       render :edit
     end
   end
@@ -68,5 +68,4 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :description, :category_id, :status_id, :buy_cost_id, :prefecture_id, :buy_day_id,
                                  :sale, :image).merge(user_id: current_user.id)
   end
-
 end
