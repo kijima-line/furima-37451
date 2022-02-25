@@ -13,7 +13,7 @@ class Region < ApplicationRecord
   # validates :prefecture_id, numericality: { other_than: 1 }
   # def save
   #   Buyer.create((item_id: item_id, user_id: user_id)
-  #   Region.create(:post_code, 
+  #   Region.create(:post_code,
   #     :prefecture_id, :city, :address_number, :building_name, :phone_number, buyer_id: buyer.id)
   # end
   belongs_to :buyer

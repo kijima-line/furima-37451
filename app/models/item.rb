@@ -20,5 +20,4 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :buy_cost
   belongs_to :buy_day
-  
 end
