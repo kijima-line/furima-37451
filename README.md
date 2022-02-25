@@ -63,6 +63,7 @@ Things you may want to cover:
 
 
 ## regionsテーブル
+
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | post_code          | string     | null: false                    |
