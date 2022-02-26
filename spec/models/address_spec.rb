@@ -16,6 +16,9 @@ RSpec.describe Address, type: :model do
         @address.building_name = ' '
         expect(@address).to be_valid
       end
+      it "tokenがあれば保存ができること" do
+        expect(@address).to be_valid
+      end
  
      end
 
@@ -57,6 +60,11 @@ RSpec.describe Address, type: :model do
         @address.item_id = ""
         @address.valid?
         expect(@address.errors.full_messages).to include("Item can't be blank")
+      end
+      it "tokenが空では登録できないこと" do
+        @address.token = nil
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Token can't be blank")
       end
 
       it 'userが紐付いていないと保存できないこと' do

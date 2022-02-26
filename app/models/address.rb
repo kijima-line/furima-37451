@@ -1,12 +1,13 @@
 class Address
   include ActiveModel::Model
-  attr_accessor :user_id, :post_code, :prefecture_id, :city, :building_name, :phone_number, :item_id, :address_number
-
+  attr_accessor :token,:user_id, :post_code, :prefecture_id, :city, :building_name, :phone_number, :item_id, :address_number
+  # :number,:cvc,:exp_year,:exp_month,
   with_options presence: true do
     validates :item_id
     validates :user_id
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :city
+    validates :token
     validates :address_number
     validates :phone_number,format: {with: /\A\d{10}\z|\A\d{11}\z/ }
   end
