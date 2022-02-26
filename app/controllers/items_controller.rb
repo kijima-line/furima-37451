@@ -54,8 +54,10 @@ class ItemsController < ApplicationController
   end
 
   def set_url
-    redirect_to root_path if @item.user_id != current_user.id || !@item.buyer.nil?
+    if @item.user_id == current_user.id || @item.buyer.nil?
+    redirect_to root_path 
   end
+end
 
   def item_params
     params.require(:item).permit(:title, :description, :category_id, :status_id, :buy_cost_id, :prefecture_id, :buy_day_id,
