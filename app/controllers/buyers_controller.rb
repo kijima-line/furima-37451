@@ -2,6 +2,7 @@ class BuyersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:index, :create]
   before_action :set_address, only: [:index, :new]
+  before_action :set_url, only: [:index, :create]
 
 
   def index
@@ -30,7 +31,6 @@ class BuyersController < ApplicationController
     @address = Address.new
   end
 
-
   private
 
   def buyer_params
@@ -45,5 +45,11 @@ class BuyersController < ApplicationController
      card: buyer_params[:token],    
      currency: 'jpy'                
       )
+  end
+
+  def set_url
+    if @item.user_id == current_user.id || @item.buyer != nil
+      redirect_to root_path
+    end
   end
 end
