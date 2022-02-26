@@ -16,11 +16,10 @@ RSpec.describe Address, type: :model do
         @address.building_name = ' '
         expect(@address).to be_valid
       end
-      it "tokenがあれば保存ができること" do
+      it 'tokenがあれば保存ができること' do
         expect(@address).to be_valid
       end
- 
-     end
+    end
 
     context '内容に問題がある場合' do
       it 'cityは空では保存できない' do
@@ -31,14 +30,13 @@ RSpec.describe Address, type: :model do
       it 'phone_numberは空では保存できない' do
         @address.phone_number = ''
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone number is invalid")
+        expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは半角記号では保存できない' do
         @address.phone_number = ''
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone number is invalid")
+        expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
-
 
       it 'post_codeが空だと保存できないこと' do
         @address.post_code = ''
@@ -52,16 +50,16 @@ RSpec.describe Address, type: :model do
         expect(@address.errors.full_messages).to include('Post code is invalid')
       end
       it 'prefecture_idを選択していないと保存できないこと' do
-        @address.prefecture_id = ""
+        @address.prefecture_id = ''
         @address.valid?
-        expect(@address.errors.full_messages).to include("Prefecture is not a number")
+        expect(@address.errors.full_messages).to include('Prefecture is not a number')
       end
       it '商品がないと保存できないこと' do
-        @address.item_id = ""
+        @address.item_id = ''
         @address.valid?
         expect(@address.errors.full_messages).to include("Item can't be blank")
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @address.token = nil
         @address.valid?
         expect(@address.errors.full_messages).to include("Token can't be blank")
