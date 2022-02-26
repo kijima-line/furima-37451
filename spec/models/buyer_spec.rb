@@ -12,7 +12,6 @@ RSpec.describe Buyer, type: :model do
       #
       # end
       it 'cityは空でも保存できること' do
-        binding.pry
         @buyer.city = ''
         @buyer.valid?
         expect(@buyer.errors.full_messages).to include("Title can't be blank")

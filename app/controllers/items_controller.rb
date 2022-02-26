@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :set_action, only: [:edit, :destroy]
   before_action :set_url, only: [:edit, :update, :destroy]
 
-
   def index
     @item = Item.all.order(created_at: :desc)
   end
@@ -28,7 +27,6 @@ class ItemsController < ApplicationController
   def edit
   end
 
-
   def destroy
     if @item.destroy
       redirect_to root_path
@@ -44,7 +42,7 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
 
   def set_action
@@ -56,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def set_url
-    redirect_to root_path if @item.user_id != current_user.id ||  @item.buyer != nil
+    redirect_to root_path if @item.user_id != current_user.id || !@item.buyer.nil?
   end
 
   def item_params

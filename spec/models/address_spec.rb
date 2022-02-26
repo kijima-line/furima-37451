@@ -5,7 +5,6 @@ RSpec.describe Address, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      
 
       @address = FactoryBot.build(:address, user_id: user.id, item_id: item.id)
     end
@@ -64,11 +63,10 @@ RSpec.describe Address, type: :model do
       it 'prefecture_idを選択していないと保存できないこと' do
         @address.prefecture_id = ''
         @address.valid?
-        expect(@address.errors.full_messages).to include("Prefecture cant be blank")
+        expect(@address.errors.full_messages).to include('Prefecture cant be blank')
       end
       it 'prefecture_idが0では保存できないこと' do
-
-        @address.prefecture_id = "0"
+        @address.prefecture_id = '0'
         @address.valid?
         expect(@address.errors.full_messages).to include('Prefecture cant be blank')
       end
