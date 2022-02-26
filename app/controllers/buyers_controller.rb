@@ -39,11 +39,11 @@ class BuyersController < ApplicationController
     )
   end
   def pay_item
-    Payjp.api_key = "sk_test_bd19d2510168662a150e5b68"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
      amount: @item.sale,
-     card: buyer_params[:token],    # カードトークン
-     currency: 'jpy'                 # 通貨の種類（日本円）
+     card: buyer_params[:token],    
+     currency: 'jpy'                
       )
   end
 end

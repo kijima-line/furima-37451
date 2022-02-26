@@ -1,7 +1,6 @@
 class Address
   include ActiveModel::Model
   attr_accessor :token,:user_id, :post_code, :prefecture_id, :city, :building_name, :phone_number, :item_id, :address_number
-  # :number,:cvc,:exp_year,:exp_month,
   with_options presence: true do
     validates :item_id
     validates :user_id
