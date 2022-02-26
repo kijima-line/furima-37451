@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe Address, type: :model do
   describe '購入情報の保存' do
     before do
-      item = FactoryBot.build(:item)
       user = FactoryBot.create(:user)
-      @address = FactoryBot.build(:address, user_id: user.id)
+      item = FactoryBot.create(:item)
+      
+
+      @address = FactoryBot.build(:address, user_id: user.id, item_id: item.id)
     end
 
     context '内容に問題ない場合' do
@@ -33,7 +35,17 @@ RSpec.describe Address, type: :model do
         expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは半角記号では保存できない' do
-        @address.phone_number = ''
+        @address.phone_number = '090-9876-9999'
+        @address.valid?
+        expect(@address.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberは9行以下では保存できない' do
+        @address.phone_number = '0909876999'
+        @address.valid?
+        expect(@address.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberは12行以上では保存できない' do
+        @address.phone_number = '090987699999'
         @address.valid?
         expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
@@ -52,9 +64,15 @@ RSpec.describe Address, type: :model do
       it 'prefecture_idを選択していないと保存できないこと' do
         @address.prefecture_id = ''
         @address.valid?
-        expect(@address.errors.full_messages).to include('Prefecture is not a number')
+        expect(@address.errors.full_messages).to include("Prefecture cant be blank")
       end
-      it '商品がないと保存できないこと' do
+      it 'prefecture_idが0では保存できないこと' do
+
+        @address.prefecture_id = "0"
+        @address.valid?
+        expect(@address.errors.full_messages).to include('Prefecture cant be blank')
+      end
+      it 'item_id がないと保存できないこと' do
         @address.item_id = ''
         @address.valid?
         expect(@address.errors.full_messages).to include("Item can't be blank")

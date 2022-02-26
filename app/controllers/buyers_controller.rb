@@ -1,16 +1,13 @@
 class BuyersController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:index, :show]
   before_action :set_item, only: [:index, :create]
-  before_action :set_address, only: [:index, :new]
   before_action :set_url, only: [:index,:create]
   before_action :set_action, only: [:index, :show]
 
   def index
+    @address = Address.new
   end
 
-  def new
-    @item = Item.new
-  end
 
   def create
     @address = Address.new(buyer_params)
@@ -47,15 +44,8 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def set_address
-    @address = Address.new
-  end
-  def set_action
-    redirect_to new_user_session_path unless user_signed_in?
-  end
-
   def set_url
-   @item.user_id != current_user.id || @item.buyer != nil
+   if @item.user_id != current_user.id || @item.buyer != nil
    redirect_to root_path
   end
 

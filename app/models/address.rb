@@ -9,9 +9,9 @@ class Address
     validates :city
     validates :token
     validates :address_number
-    validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
+    validates :phone_number, format: { with: /\A\d{9}\z|\A\d{11}\z/ }
   end
-  validates :prefecture_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 0 ,message: "cant be blank" }
   def save
     buyer = Buyer.create(item_id: item_id, user_id: user_id)
     Region.create(post_code: post_code, prefecture_id: prefecture_id,

@@ -6,7 +6,7 @@
       購入内容の確認
     </h1>
   <%= render 'shared/error_messages', model: @address %>
-  <% @item = Item.find(params[:item_id]) %>
+
     <div class='buy-item-info'>
          <%= image_tag @item.image, class: "buy-item-img" %>
       <div class='buy-item-right-content'>
@@ -29,7 +29,7 @@
     </div>
 
     <%= form_with model: @address, id: 'charge-form' ,url: item_buyers_path, class: 'transaction-form-wrap',local: true do |f| %>
-    <%# カード情報の入力 %>
+
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
@@ -67,7 +67,7 @@
         <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
       </div>
     </div>
-    <%# /カード情報の入力 %>
+
     
 
     <div class='shipping-address-form'>
@@ -121,10 +121,7 @@
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
       <%
-=begin%>
- item_buyers_path 
-<%
-=end%>
+
     </div>
     <% end %>
   </div>
