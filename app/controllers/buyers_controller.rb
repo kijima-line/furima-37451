@@ -2,7 +2,7 @@ class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show]
   before_action :set_item, only: [:index, :create]
   before_action :set_url, only: [:index,:create]
-  before_action :set_action, only: [:index, :show]
+
 
   def index
     @address = Address.new
@@ -48,5 +48,5 @@ class BuyersController < ApplicationController
    if @item.user_id != current_user.id || @item.buyer != nil
    redirect_to root_path
   end
-
+end
 end

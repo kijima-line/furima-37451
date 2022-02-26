@@ -28,6 +28,12 @@ RSpec.describe Address, type: :model do
         @address.valid?
         expect(@address.errors.full_messages).to include("City can't be blank")
       end
+      it 'address_numberは空では保存できない' do
+        @address.address_number = ''
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Address number can't be blank")
+      end
+
       it 'phone_numberは空では保存できない' do
         @address.phone_number = ''
         @address.valid?
@@ -39,7 +45,7 @@ RSpec.describe Address, type: :model do
         expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは9行以下では保存できない' do
-        @address.phone_number = '0909876999'
+        @address.phone_number = '090987699'
         @address.valid?
         expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
