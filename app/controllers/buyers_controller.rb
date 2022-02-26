@@ -2,7 +2,7 @@ class BuyersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:index, :create]
   before_action :set_address, only: [:index, :new]
-  before_action :set_url, only: [:create]
+  before_action :set_url, only: [:index,:create]
   before_action :set_action, only: [:index, :show]
 
   def index
@@ -23,13 +23,8 @@ class BuyersController < ApplicationController
     end
   end
 
-  def set_item
-    @item = Item.find(params[:item_id])
-  end
 
-  def set_address
-    @address = Address.new
-  end
+
 
   private
 
@@ -47,11 +42,21 @@ class BuyersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def set_address
+    @address = Address.new
+  end
   def set_action
     redirect_to new_user_session_path unless user_signed_in?
   end
 
   def set_url
-    redirect_to root_path if @item.user_id == current_user.id || !@item.buyer.nil?
+   @item.user_id != current_user.id || @item.buyer != nil
+   redirect_to root_path
   end
+
 end
