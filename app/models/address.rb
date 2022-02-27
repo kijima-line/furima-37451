@@ -9,7 +9,7 @@ class Address
     validates :city
     validates :token
     validates :address_number
-    validates :phone_number, format: { with: /\A\d{8}\z|\A\d{11}\z/ }
+    validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
   end
   validates :prefecture_id, numericality: { other_than: 0, message: 'cant be blank' }
   def save
