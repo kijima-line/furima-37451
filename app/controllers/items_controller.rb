@@ -50,10 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def set_url
-
-    if @item.user_id != current_user.id and @item.buyer.nil?
-     redirect_to root_path 
-    end
+    redirect_to root_path  if @item.user_id != current_user.id || @item.buyer = nil?
   end
 
   def item_params
