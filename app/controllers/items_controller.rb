@@ -46,7 +46,9 @@ class ItemsController < ApplicationController
   private
 
   def set_action
-    redirect_to root_path unless current_user.id == @item.user_id
+    unless user_signed_in?
+    redirect_to root_path 
+    end
   end
 
   def set_item
@@ -55,9 +57,9 @@ class ItemsController < ApplicationController
 
   def set_url
     if @item.user_id == current_user.id || @item.buyer.nil?
-    redirect_to root_path 
+      redirect_to root_path 
+    end
   end
-end
 
   def item_params
     params.require(:item).permit(:title, :description, :category_id, :status_id, :buy_cost_id, :prefecture_id, :buy_day_id,
