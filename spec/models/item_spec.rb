@@ -74,7 +74,3 @@ RSpec.describe Item, type: :model do
     end
   end
 end
-# ・各Activehashカラムのidが1では登録できないこと
-# ・金額は300未満では登録できないこと
-# ・金額は10,000,000以上では登録できないこと
-# ・金額は半角数値でなければ登録できないこと
