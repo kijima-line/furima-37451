@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_action, only: [:edit, :destroy]
   before_action :set_url, only: [:edit, :update, :destroy]
 
   def index
@@ -45,19 +44,16 @@ class ItemsController < ApplicationController
 
   private
 
-  def set_action
-    unless user_signed_in?
-    redirect_to root_path 
-    end
-  end
 
   def set_item
     @item = Item.find(params[:id])
   end
 
   def set_url
-    if @item.user_id == current_user.id || @item.buyer.nil?
-      redirect_to root_path 
+
+    if 
+     @item.user_id != current_user.id && @item.buyer.nil?
+     redirect_to root_path 
     end
   end
 
