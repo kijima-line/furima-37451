@@ -1,13 +1,11 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
-  before_action :set_url, only: [:index,:create]
-
+  before_action :set_url, only: [:index, :create]
 
   def index
     @address = Address.new
   end
-
 
   def create
     @address = Address.new(buyer_params)
@@ -19,9 +17,6 @@ class BuyersController < ApplicationController
       render :index
     end
   end
-
-
-
 
   private
 
@@ -45,8 +40,6 @@ class BuyersController < ApplicationController
   end
 
   def set_url
-   if @item.user_id == current_user.id || @item.buyer != nil
-   redirect_to root_path
+    redirect_to root_path if @item.user_id == current_user.id || @item.buyer.nil?
   end
-end
 end
