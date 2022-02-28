@@ -44,13 +44,12 @@ class ItemsController < ApplicationController
 
   private
 
-
   def set_item
     @item = Item.find(params[:id])
   end
 
   def set_url
-    redirect_to root_path  if @item.user_id != current_user.id || @item.buyer != nil 
+    redirect_to root_path if @item.user_id != current_user.id || @item.buyer != nil 
   end
 
   def item_params

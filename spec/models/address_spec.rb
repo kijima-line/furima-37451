@@ -26,7 +26,7 @@ RSpec.describe Address, type: :model do
       it '郵便番号が半角ハイフンを含む形でなければ購入できない' do
         @address.post_code = '8888888'
         @address.valid?
-        expect(@address.errors.full_messages).to include("Post code is invalid")
+        expect(@address.errors.full_messages).to include('Post code is invalid')
       end
       it 'cityは空では保存できない' do
         @address.city = ''
