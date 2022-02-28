@@ -7,16 +7,15 @@ RSpec.describe User, type: :model do
     it '全ての項目が入力されていれば登録できる' do
       expect(@user).to be_valid
     end
-    it 'nicknameが空だと登録できない' do
+    it 'ニックネームが空だと登録できない' do
       @user.nickname = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      expect(@user.errors.full_messages).to include('Nickname を入力してください')
     end
 
     it 'emailが空では登録できない' do
       @user.email = ''
       @user.valid?
-
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
 
