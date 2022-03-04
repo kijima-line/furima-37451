@@ -13,3 +13,78 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< Updated upstream
+=======
+ .area{  
+   display: flex;    
+  text-align:center;
+  padding:  15px;             /* 余白指定 */
+  height: 50px;
+  list-style: none;
+  justify-content: space-around;
+ }
+
+ 
+.block1{
+  
+  padding: 0.4em;
+  display: block;
+  color: #898989 !important;
+  background: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size:18px;
+  border-radius: 3px;
+  text-align:center;
+  text-decoration:none !important;
+	border: solid;
+	border-color: #898989;
+	border-width: 0.5px;
+}
+
+
+.block1:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: -3px 60px 0 0;
+  background: url("https://developers.google.com/identity/images/g-logo.png?hl=ja") no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.block1:hover {
+  background: #ffffff;
+}
+
+.block{
+  padding: 0.4em;
+  display: block;
+  color: #898989 !important;
+  background: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size:18px;
+  border-radius: 3px;
+  text-align:center;
+  text-decoration:none !important;
+	border: solid;
+	border-color: #898989;
+	border-width: 0.5px;
+}
+.block:before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: -3px 24px 0 0;
+  background: url("https://scontent-nrt1-1.xx.fbcdn.net/v/t39.2365-6/124948750_1761063074060843_5122072497966472683_n.png?_nc_cat=106&ccb=1-5&_nc_sid=ad8a9d&_nc_ohc=9d72XNROkJ4AX-Hg9qx&_nc_ht=scontent-nrt1-1.xx&oh=00_AT8Vx2uBH2RMa9A9qjHvrsa03YCC1TSKOW_VtdDZ1q8zJA&oe=6225EA17") no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.block:hover {
+  background: #ffffff;
+}
+>>>>>>> Stashed changes

@@ -28,8 +28,18 @@
   <div class='login-btn'>
     <%= f.submit "ログイン" ,class:"login-red-btn" %>
   </div>
+<<<<<<< Updated upstream
    <%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post%>
 <%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post%>
+=======
+   <div class="area">
+   <div class="blok1"> <%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path,class:"block1", method: :post%></div>
+        </div>
+          <div class="area">
+         <div class="blok"> <%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path,class: "block",method: :post%></div>
+      </div>
+     
+>>>>>>> Stashed changes
 </div>
  
 <% end %>
