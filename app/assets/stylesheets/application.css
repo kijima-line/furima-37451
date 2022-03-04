@@ -86,28 +86,3 @@
 .block:hover {
   background: #ffffff;
 }
-
- .area{
-  list-style: none;
- }
-
-.block1{
-  color: rgb(1, 132, 247);
-  display:block;
-  width:150px;
-  margin:0 auto;
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-  font-size: 14px;
-}
-.block{
-  color: aliceblue;
-  display:block;
-  width:150px;
-  margin:0 auto;
-  background-color: blue;
-  text-align: center;
-  font-size: 14px;
-}
-
-
