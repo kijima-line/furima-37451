@@ -45,9 +45,9 @@
 .block1:before {
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin: -3px 60px 0 0;
+  width: 27px;
+  height: 27px;
+  margin: 0 60px 0 0;
   background: url("https://developers.google.com/identity/images/g-logo.png?hl=ja") no-repeat;
   background-size: contain;
   vertical-align: middle;
@@ -75,8 +75,8 @@
 .block:before {
   content: "";
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
   margin: -3px 24px 0 0;
   background: url("f_logo_RGB-Blue_144.png") no-repeat;
   background-size: contain;
